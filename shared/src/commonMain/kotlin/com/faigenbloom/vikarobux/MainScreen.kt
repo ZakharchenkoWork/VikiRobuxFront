@@ -79,6 +79,7 @@ private fun MainScreen(repository: ItemsViewModel) {
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
             ) {
                 Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (getOS() != "IOS"){
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -101,7 +102,7 @@ private fun MainScreen(repository: ItemsViewModel) {
                             label = { Text("К-во") },
                             singleLine = true,
 
-                        )
+                            )
                         Box(
                             modifier = Modifier
                                 .size(56.dp)
@@ -123,10 +124,14 @@ private fun MainScreen(repository: ItemsViewModel) {
                                 ),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text("+", color = Color.White, style = MaterialTheme.typography.headlineSmall)
+                            Text(
+                                "+",
+                                color = Color.White,
+                                style = MaterialTheme.typography.headlineSmall
+                            )
                         }
 
-
+                    }
                     }
                     if (showHints && hintItems.isNotEmpty()) {
                         Card(
@@ -165,11 +170,13 @@ private fun MainScreen(repository: ItemsViewModel) {
                             ItemCard(
                                 item = item,
                                 onToggle = {
-                                    if (item.isDone) {
-                                        lastDone = item
-                                        showUndoDialog = true
-                                    } else {
-                                        repository.markAsDone(item.id, true)
+                                    if (getOS() != "IOS") {
+                                        if (item.isDone) {
+                                            lastDone = item
+                                            showUndoDialog = true
+                                        } else {
+                                            repository.markAsDone(item.id, true)
+                                        }
                                     }
                                 }
                             )

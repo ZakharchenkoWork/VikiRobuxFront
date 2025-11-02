@@ -62,6 +62,7 @@ class ItemsViewModel(
 
         launch {
             repository.addItem(newItem)
+            load()
         }
     }
 
