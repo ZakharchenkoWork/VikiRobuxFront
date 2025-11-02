@@ -42,7 +42,7 @@ fun MainScreen(repository: ItemsViewModel) {
             Column(Modifier.padding(horizontal = 16.dp)) {
                 Spacer(Modifier.height(16.dp))
                 Text(
-                    "Вики Robux Копилка",
+                    "Вики Robux Банк",
                     style = MaterialTheme.typography.headlineLarge
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
