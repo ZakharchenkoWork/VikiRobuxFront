@@ -19,9 +19,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalFocusManager
 import com.faigenbloom.vikarobux.models.Item
 
+@Composable
+fun App(){
+    val viewModel = remember { ItemsViewModel(RemoteRepository()) }
+    MainScreen(viewModel)
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(repository: ItemsViewModel) {
+private fun MainScreen(repository: ItemsViewModel) {
     val focusManager = LocalFocusManager.current
 
     val items by repository.items.collectAsState()
@@ -40,10 +45,10 @@ fun MainScreen(repository: ItemsViewModel) {
     Scaffold(
         topBar = {
             Column(Modifier.padding(horizontal = 16.dp)) {
-                Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(32.dp))
                 Text(
-                    "Вики Robux Копилка",
-                    style = MaterialTheme.typography.headlineLarge
+                    "Вики Robux Банк",
+                    style = MaterialTheme.typography.headlineMedium
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
@@ -63,7 +68,7 @@ fun MainScreen(repository: ItemsViewModel) {
         Column(
             Modifier
                 .padding(inner)
-                .padding(16.dp)
+                .padding(horizontal = 16.dp)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
@@ -93,8 +98,9 @@ fun MainScreen(repository: ItemsViewModel) {
                             modifier = Modifier
                                 .width(96.dp)
                                 .focusRequester(qtyFocus),
-                            label = { Text("Кол-во") },
-                            singleLine = true
+                            label = { Text("К-во") },
+                            singleLine = true,
+
                         )
                         Box(
                             modifier = Modifier
