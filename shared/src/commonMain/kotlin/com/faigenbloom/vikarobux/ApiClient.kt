@@ -12,7 +12,7 @@ import kotlinx.serialization.json.Json
 
 expect fun provideEngine(): HttpClientEngine
 
-val BASE_URL = "https://vikirobuxbackend-production.up.railway.app"
+val BASE_URL = "https://vikirobuxbackend.onrender.com"
 
 val apiClient = HttpClient(provideEngine()) {
     install(ContentNegotiation) {
